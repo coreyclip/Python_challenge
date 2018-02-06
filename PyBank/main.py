@@ -95,7 +95,10 @@ for record in total_changes_list:
 
 average_change = moving_total / len(total_changes_list)
 
-print(f"Over the analyzed time period of {t1 + t2} months \n total revenue is {r1 + r2} \n")
+
+print('Financial Analysis')
+print("-" * 50)
+print(f"Over the analyzed time period of {t1 + t2} months \n the total revenue was ${r1 + r2} \n")
 print(f"{greatest_increase_date['Date of greatest increase']} saw the greatest increase in revenue \n")
 print(f"with {greatest_increase_date['Change']} increase in revenue")
 print(f"{greatest_decrease_date['Date of greatest decrease']} saw the greatest decrease in revenue \n")
