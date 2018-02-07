@@ -96,6 +96,19 @@ for record in total_changes_list:
 average_change = moving_total / len(total_changes_list)
 
 
+# write report to text file
+with open("report.txt", "w") as f:
+    f.write('Financial Analysis \n')
+    f.write("-" * 50)
+    f.write(f"\n Over the analyzed time period of {t1 + t2} months \n the total revenue was ${r1 + r2} \n")
+    f.write("=" * 50)
+    f.write(f"\n {greatest_increase_date['Date of greatest increase']} saw the greatest increase in revenue with {greatest_increase_date['Change']} increase in revenue")
+    f.write(f"\n {greatest_decrease_date['Date of greatest decrease']} saw the greatest decrease in revenue with {greatest_decrease_date['Change']} decrease in revenue \n")
+    f.write("#"*50)
+    f.write(f"\n the average change in revenue across the entire dataset is: {average_change}")
+    f.close()
+
+
 print('Financial Analysis')
 print("-" * 50)
 print(f"Over the analyzed time period of {t1 + t2} months \n the total revenue was ${r1 + r2} \n")

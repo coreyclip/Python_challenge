@@ -1,0 +1,9 @@
+Financial Analysis 
+--------------------------------------------------
+ Over the analyzed time period of 172 months 
+ the total revenue was $81401862.0 
+==================================================
+ Feb-2017 saw the greatest increase in revenue with 723441 increase in revenue
+ Jan-2017 saw the greatest decrease in revenue with -368951 decrease in revenue 
+##################################################
+ the average change in revenue across the entire dataset is: 3614.9882352941177
