@@ -42,11 +42,12 @@ def polltally(filepath):
 	with open(filepath) as file:
 		reader = csv.DictReader(file)
 		for row in reader:
-    		print(row)
-			vote_dict[indexer] = {"id":row[0], "county":row[1], "vote": row[2]}
-			indexer += 1
-			vote_count += 1
-			candidate_list.add(row[2])
+    			print(row)
+				vote_dict[indexer] = {"id":row[0], "county":row[1], "vote": row[2]}
+				indexer += 1
+				vote_count += 1
+				candidate_list.add(row[2])
+		
 	return vote_count, candidate_list
 			
 
