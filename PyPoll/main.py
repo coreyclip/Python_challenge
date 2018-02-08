@@ -41,8 +41,8 @@ def polltally(filepath):
     candidate_list = set()
     with open(filepath) as file:
         reader = csv.DictReader(file)
+        head = 0
         for row in reader:
-            print(row)
             vote_dict[indexer] = {
                                 "id":row['Voter ID'],
                                 "county":row['County'],
@@ -50,7 +50,12 @@ def polltally(filepath):
                                         }
             indexer += 1
             vote_count += 1
-            candidate_list.add(row[2])
+            candidate_list.add(row['Candidate'])
+            while head < 10:
+                print(row)
+                head += 1
+            else:
+                pass
         
     return vote_count, candidate_list
             
