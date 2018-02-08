@@ -6,10 +6,10 @@ Challenge goals:
 
 	* [x] The total number of months included in the dataset
 	* [x] The total amount of revenue gained over the entire period
-	* [ ] The average change in revenue between months over the entire period
-	* [ ] The greatest increase in revenue (date and amount) over the 
+	* [x] The average change in revenue between months over the entire period
+	* [x] The greatest increase in revenue (date and amount) over the 
     entire period
-	* [ ] The greatest decrease in revenue (date and amount) over the 
+	* [x] The greatest decrease in revenue (date and amount) over the 
     entire period
 
 
@@ -108,12 +108,12 @@ with open("report.txt", "w") as f:
     f.write(f"\n the average change in revenue across the entire dataset is: {average_change}")
     f.close()
 
-
+print("\n \n")
 print('Financial Analysis')
 print("-" * 50)
-print(f"Over the analyzed time period of {t1 + t2} months \n the total revenue was ${r1 + r2} \n")
+print(f"Over the analyzed time period of {t1 + t2} months, total revenue was ${r1 + r2}0 \n")
+print(f"the average change in revenue across the entire dataset is: {round(average_change, 3)} \n")
 print(f"{greatest_increase_date['Date of greatest increase']} saw the greatest increase in revenue")
 print(f"with {greatest_increase_date['Change']} increase in revenue")
 print(f"{greatest_decrease_date['Date of greatest decrease']} saw the greatest decrease in revenue")
 print(f"with {greatest_decrease_date['Change']} decrease in revenue \n")
-print(f"the average change in revenue across the entire dataset is: {average_change}")
