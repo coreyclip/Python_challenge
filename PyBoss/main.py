@@ -24,10 +24,10 @@ Emp ID,First Name,Last Name,DOB,SSN,State
 411,Stacy,Charles,12/20/1957,***-**-8526,PA
 
 	* In summary, the required conversions are as follows:
-		* [ ]The Name column should be split into separate First Name and Last Name columns.
-		* [ ]The DOB data should be re-written into DD/MM/YYYY format.
-		* [ ]The SSN data should be re-written such that the first five numbers are hidden from view.
-		* [ ]The State data should be re-written as simple two-letter abbreviations.
+		* [x]The Name column should be split into separate First Name and Last Name columns.
+		* [x]The DOB data should be re-written into DD/MM/YYYY format.
+		* [x]The SSN data should be re-written such that the first five numbers are hidden from view.
+		* [x]The State data should be re-written as simple two-letter abbreviations.
 
 
 """
@@ -35,14 +35,66 @@ Emp ID,First Name,Last Name,DOB,SSN,State
 import os
 import csv
 from datetime import datetime
-
+from dateutil.parser import parse
+us_state_abbrev = {
+    'Alabama': 'AL',
+    'Alaska': 'AK',
+    'Arizona': 'AZ',
+    'Arkansas': 'AR',
+    'California': 'CA',
+    'Colorado': 'CO',
+    'Connecticut': 'CT',
+    'Delaware': 'DE',
+    'Florida': 'FL',
+    'Georgia': 'GA',
+    'Hawaii': 'HI',
+    'Idaho': 'ID',
+    'Illinois': 'IL',
+    'Indiana': 'IN',
+    'Iowa': 'IA',
+    'Kansas': 'KS',
+    'Kentucky': 'KY',
+    'Louisiana': 'LA',
+    'Maine': 'ME',
+    'Maryland': 'MD',
+    'Massachusetts': 'MA',
+    'Michigan': 'MI',
+    'Minnesota': 'MN',
+    'Mississippi': 'MS',
+    'Missouri': 'MO',
+    'Montana': 'MT',
+    'Nebraska': 'NE',
+    'Nevada': 'NV',
+    'New Hampshire': 'NH',
+    'New Jersey': 'NJ',
+    'New Mexico': 'NM',
+    'New York': 'NY',
+    'North Carolina': 'NC',
+    'North Dakota': 'ND',
+    'Ohio': 'OH',
+    'Oklahoma': 'OK',
+    'Oregon': 'OR',
+    'Pennsylvania': 'PA',
+    'Rhode Island': 'RI',
+    'South Carolina': 'SC',
+    'South Dakota': 'SD',
+    'Tennessee': 'TN',
+    'Texas': 'TX',
+    'Utah': 'UT',
+    'Vermont': 'VT',
+    'Virginia': 'VA',
+    'Washington': 'WA',
+    'West Virginia': 'WV',
+    'Wisconsin': 'WI',
+    'Wyoming': 'WY',
+}
 
 path1 = os.path.join('employee_data1.csv')
 path2 = os.path.join('employee_data2.csv')
 
 pathlist = [path1, path2]
 
-new_records = { }
+new_records = []
 
 for path in pathlist:
     with open(path) as file:
@@ -53,14 +105,22 @@ for path in pathlist:
             first_name = row['Name'].split(' ')[0]
             last_name = row['Name'].split(' ')[1]
             #reformat date
-             datetime('1988-11-08').strftime('We are the %d, %b %Y')
-            
-            new_records[indexer] = {
+            Bday = datetime.strptime(row['DOB'],'%Y-%m-%d').strftime('%d/%m/%Y')
+            #hide first five number of SSN
+            Last4Digits = row["SSN"].split('-')[2]
+            hiddenSSN = f"***-**-{Last4Digits}"
+            #look up state in us_state_abbrev for abbreviation
+            abbrev = us_state_abbrev[row['State']]
+            new_records.append({
                                     'Emp ID': row['Emp ID'],
-                                    'First Name': first_name,
-                                    'Last Name': last_name,
-                                    
-                                       }
-            
-            
+                                    'First Name': [first_name],
+                                    'Last Name': [last_name],
+                                    'DOB':[Bday],
+                                    'SSN':[hiddenSSN],
+                                    'State': abbrev
+
+                                       })
+            indexer += 1
+for record in new_records:
+    print(record)
             
