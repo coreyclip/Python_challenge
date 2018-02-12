@@ -6,9 +6,9 @@ Your task is to create a Python script that analyzes the votes and calculates ea
 
     * [x]The total number of votes cast
     * [x]A complete list of candidates who received votes
-    * [ ]The percentage of votes each candidate won
-    * [ ]The total number of votes each candidate won
-    * [ ]The winner of the election based on popular vote.
+    * [x]The percentage of votes each candidate won
+    * [x]The total number of votes each candidate won
+    * [x]The winner of the election based on popular vote.
 
 As an example, your analysis should look similar to the one below:
 Election Results
@@ -57,6 +57,8 @@ def polltally(filepath, index_start=0):
             vote_count += 1
             candidate_list.add(row['Candidate'])
             while head <= 3:
+                print("The first 3 records")
+                print("--" * 20)
                 print(row)
                 head += 1
             else:
@@ -89,36 +91,55 @@ def votetally(candidate_list, vote_dict):
      
 vote_count = 0
 candidate_list = set()
-final_tally = {}             
+final_tally = {}
+num_datasets = 0 #counts up how many datasets we have looped through, required for final tally        
 for path in path_list:
     count, candlist, voterecord = polltally(path)
-    vote_count += count
+    vote_count += count #incriment the total number of votes in all the datasets
     candidate_list.update(candlist)
-    for candidate in candidate_list:
+    tally = votetally(candidate_list, voterecord)
+    for key, value in tally.items():
+        print(key, value)
+        if num_datasets < 1: #for the first dataset simply assign
+            final_tally[key] = value
+        else:
+            final_tally[key] += value
+    num_datasets += 1 #incriment the number of datasets
+        
+        
         #loop through candidate list and call votetally to sum up how many votes
         # each candidate got in each dataset and sum the two totals. 
-    
+
+print("The Final tally from all datasets")
+print("*" * 50)
+print(final_tally)       
                           
 
-c1, candlist, voterec1 = polltally(path1)
-c2, candlist2,voterec2 = polltally(path2)
-
-# update candidate list with the candidates from the other dataset
-candlist.update(candlist2)
-
 #tabulate the total votes from both datasets
-total_votes = c1 + c2
+vote_count
 
-
+#find the winner of the election
+top_vote = 0
+winner = "none"
+for key, value in final_tally.items():
+    #print(key, value)
+    if value > top_vote:
+        winner = key
+        top_vote = value
+        #print(winner)
+    else:
+        pass
         
 
-print("=" * 10 + "Election Results" + "=" * 10)
-print("total votes: " + str(total_votes))
-print()
-print("candidates who received votes: ")
-print("#" * 50)
-for i in candlist:
-    print(i)
+print("=" * 10 + " Election Results " + "=" * 10)
+print("total votes: " + str(vote_count))
+print("--" *20)
+for i in final_tally:
+    print(f"{i}: {round(((final_tally[i] / vote_count) * 100), 4)}% ({final_tally[i]})")
+print("--" *20)
+print(f"The Winner is {winner}")
+
+
 
 
         
