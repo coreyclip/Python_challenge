@@ -130,7 +130,7 @@ for key, value in final_tally.items():
     else:
         pass
         
-
+# Print final report in Terminal
 print("=" * 10 + " Election Results " + "=" * 10)
 print("total votes: " + str(vote_count))
 print("--" *20)
@@ -140,6 +140,19 @@ print("--" *20)
 print(f"The Winner is {winner}")
 
 
+# Export text file 
+# write report to text file
+with open("vote_report.txt", "w") as f:
+    f.write("=" * 10 + " Election Results " + "=" * 10)
+    f.write("\n")
+    f.write(f"total votes: " + str(vote_count))
+    f.write("\n")
+    f.write("=" * 50)
+    f.write("\n")
+    for i in final_tally:
+        f.write(f"{i}: {round(((final_tally[i] / vote_count) * 100), 4)}% ({final_tally[i]}) \n")
+    f.write(f"The Winner is {winner}")
+    f.close()
 
 
         
