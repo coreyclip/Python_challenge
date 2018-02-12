@@ -5,8 +5,8 @@ Your task is to create a Python script to automate the analysis of any such pass
 	* Assess the passage for each of the following:
 		* [x]Approximate word count
 		* [x]Approximate sentence count
-		* [ ]Approximate letter count (per word)
-		* [ ]Average sentence length (in words)
+		* [x]Approximate letter count (per word)
+		* [x]Average sentence length (in words)
 
 	* As an example, this passage:
 
