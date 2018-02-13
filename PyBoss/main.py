@@ -113,14 +113,24 @@ for path in pathlist:
             abbrev = us_state_abbrev[row['State']]
             new_records.append({
                                     'Emp ID': row['Emp ID'],
-                                    'First Name': [first_name],
-                                    'Last Name': [last_name],
-                                    'DOB':[Bday],
-                                    'SSN':[hiddenSSN],
+                                    'First Name': first_name,
+                                    'Last Name': last_name,
+                                    'DOB':Bday,
+                                    'SSN':hiddenSSN,
                                     'State': abbrev
 
                                        })
-            indexer += 1
-for record in new_records:
-    print(record)
-            
+
+
+with open("new_records.csv", 'w') as f:
+    # Assuming that all dictionaries in the list have the same keys.
+    headers = sorted([k for k, v in new_records[0].items()])
+    print("headers: ")
+    print(headers)
+    csv_data = [headers]
+
+    for record in new_records:
+        csv_data.append([record[h] for h in headers])
+        #print(csv_data)
+    writer = csv.writer(f)
+    writer.writerows(csv_data)
