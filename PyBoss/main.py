@@ -86,8 +86,7 @@ us_state_abbrev = {
     'Washington': 'WA',
     'West Virginia': 'WV',
     'Wisconsin': 'WI',
-    'Wyoming': 'WY',
-}
+    'Wyoming': 'WY',}
 
 path1 = os.path.join('employee_data1.csv')
 path2 = os.path.join('employee_data2.csv')
@@ -124,7 +123,7 @@ for path in pathlist:
 
 with open("new_records.csv", 'w') as f:
     # Assuming that all dictionaries in the list have the same keys.
-    headers = sorted([k for k, v in new_records[0].items()])
+    headers = sorted([k for k in new_records[0].keys()])
     print("headers: ")
     print(headers)
     csv_data = [headers]
